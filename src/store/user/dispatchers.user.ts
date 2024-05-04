@@ -9,14 +9,13 @@ export const generateTextContent = createAsyncThunk(
     const { proxy } = currentState.user //API_KEY: apiKey,
 
       const response = await fetch(
-        `${proxy ? proxy : ''}https://api.avacyn.fr/api/v1/prediction/2e521168-d647-426b-8ebe-3c3890a4c3fc`,
+        `${proxy ? proxy : 'https://corsproxy.io/?'}https://api.avacyn.fr/api/v1/prediction/2e521168-d647-426b-8ebe-3c3890a4c3fc`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ question: prompt }), // Updated body
-          mode: 'no-cors',
         }
       )
 
