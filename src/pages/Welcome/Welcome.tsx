@@ -13,17 +13,17 @@ function Welcome() {
         <ThemeToggle />
       </div>
       <div className='heading'>
-        <h1 className={showInputs ? 'small-h1' : ''}>Chat with <span>Gemini</span></h1>
+        <h1 className={showInputs ? 'small-h1' : ''}>Chattez avec <span>Avacyn</span></h1>
         {!showInputs ?
           (
             <>
-              <h3>Experience Google's largest and most capable AI model in your browser</h3>
-              <Button className='start-button' onClick={() => setShowInputs(true)}>Get started</Button>
+              <h3>Titre</h3>
+              <Button className='start-button' onClick={() => setShowInputs(true)}>C'est parti !</Button>
             </>) :
           (<Setup />)
         }
       </div>
-      <span className='disclaimer'>This application only connects Google API with your device.</span>
+      <span className='disclaimer'>Cette application est un prototype.</span>
     </div>
   )
 }

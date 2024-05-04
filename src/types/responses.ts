@@ -1,13 +1,6 @@
 export interface textResponse {
-    candidates: Array<{
-      content: {
-        parts: Array<{ text: string }>
-      }
-    }>
-    error?: {
-      message: string
+    text: string 
     }
-  }
 
   export interface Message {
     type: 'inbound' | 'outbound'

@@ -18,9 +18,9 @@ function Header() {
 
     return (
         <div className='header'>
-            <span>Hello, {name}</span>
+            <span>Bonjour, {name}</span>
             <div className='header-buttons'>
-            <Icon className='github-icon' icon='mdi:github' height={28} onClick={openGithub} />
+            {/* <Icon className='github-icon' icon='mdi:github' height={28} onClick={openGithub} /> */}
             <Icon className='clear-icon' icon='mdi:trashcan-outline' height={28} onClick={() => dispatch(clearChat())} />
             <ThemeToggle />
             <Logout />

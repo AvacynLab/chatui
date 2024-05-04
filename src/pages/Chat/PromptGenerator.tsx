@@ -21,7 +21,7 @@ function PromptGenerator() {
         {data &&
           data.map((message, index) => (
             <div className={`message ${message.type === 'inbound' ? 'inbound' : 'outbound'}`} key={index}>
-              <strong>{message.type === 'inbound' ? 'Gemini' : 'You'}</strong>
+              <strong>{message.type === 'inbound' ? 'Avacyn' : 'Vous'}</strong>
               {message.type === 'inbound' ? (
                 <ReactMarkdown className='markdown-render'>{message.message}</ReactMarkdown>
               ) : (
@@ -30,19 +30,19 @@ function PromptGenerator() {
             </div>
           ))}
           {loading && <LoadingLine />}
-          {error && <div className='error'>{error} <br /> Sign Out to enter a new API Key</div>}
+          {error && <div className='error'>{error} <br />Clé d'accès expirée. </div>}
       </div>
       <div className='message-input-container'>
         <textarea
           id='prompt'
           value={prompt}
           className='prompt-input'
-          placeholder='Type your message...'
+          placeholder='Comment puis-je vous aider ?'
           onChange={handlePromptChange}
           onKeyDown={handleKeyDown}
           ref={textareaRef}
         />
-        <Button disabled={!prompt || loading} onClick={handleSendPrompt}>Send</Button>
+        <Button disabled={!prompt || loading} onClick={handleSendPrompt}>Envoyer</Button>
       </div>
     </div>
   )

@@ -6,35 +6,25 @@ export const generateTextContent = createAsyncThunk(
   'user/generateTextContent',
   async ({ prompt }: { prompt: string }, thunkApi) => {
     const currentState = thunkApi.getState() as RootState
-    const { API_KEY: apiKey, proxy } = currentState.user
+    const { proxy } = currentState.user //API_KEY: apiKey,
 
       const response = await fetch(
-        `${proxy ? proxy : ''}https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+        `${proxy ? proxy : ''}https://api.avacyn.fr/api/v1/prediction/2e521168-d647-426b-8ebe-3c3890a4c3fc`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: prompt,
-                  },
-                ],
-              },
-            ],
-          }),
+          body: JSON.stringify({ question: prompt }),
         }
       )
 
       const data: textResponse = await response.json()
 
-      const aiAnswerText = data.candidates?.[0]?.content?.parts?.[0]?.text
+      const aiAnswerText = data.text
 
       if (aiAnswerText === undefined) {
-        throw Error(data?.error?.message)
+        throw Error("Problème de requête")
       }
 
       return aiAnswerText

@@ -10,7 +10,7 @@ function Setup() {
     return (
         <div className={`auth-container ${API_KEY ? 'active' : ''}`}>
             <div className='input-container'>
-                <span>Your Name</span>
+                <span>Votre prénom</span>
                 <input
                     type='text'
                     id='name'
@@ -20,7 +20,7 @@ function Setup() {
                 />
             </div>
             <div className='input-container'>
-                <span>API Key</span>
+                <span>Clé d'accès</span>
                 <input
                     type='password'
                     id='apiKey'
@@ -32,8 +32,8 @@ function Setup() {
             </div>
                 <ProxySetup proxy={proxy} handleProxyChange={handleProxyChange} />
             <div className='buttons-container'>
-                <Button className='start-button secondary' onClick={getAPI}>Get Free API Key</Button>
-                <Button className='start-button' onClick={handleSubmit}>Start using Gemini</Button>
+                {/* <Button className='start-button secondary' onClick={getAPI}>Get Free API Key</Button> */}
+                <Button className='start-button' onClick={handleSubmit}>C'est parti !</Button>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ function Logout () {
         dispatch(clearUser())
     }
     return (
-        <Button onClick={handleLogout}>Sign Out</Button>
+        <Button onClick={handleLogout}>Déconnexion</Button>
     )
 }
 

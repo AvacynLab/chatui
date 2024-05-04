@@ -21,7 +21,7 @@ function ProxySetup({ handleProxyChange, proxy }: ProxyProps) {
                         checked={useProxy}
                     />
                 </label>
-                <span>I want to use a proxy</span>
+                <span>Je souhaite utiliser un proxy</span>
             </div>
             {useProxy && (
                 <div className='input-container'>
