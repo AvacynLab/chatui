@@ -12,9 +12,9 @@ function Header() {
 
     const dispatch = useDispatch()
 
-    const openGithub = () => {
-        window.open('https://github.com/fjosue4/google-gemini-ui')
-    }
+    // const openGithub = () => {
+    //     window.open('https://github.com/fjosue4/google-gemini-ui')
+    // }
 
     return (
         <div className='header'>

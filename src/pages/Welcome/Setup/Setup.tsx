@@ -32,7 +32,7 @@ function Setup() {
             </div>
                 <ProxySetup proxy={proxy} handleProxyChange={handleProxyChange} />
             <div className='buttons-container'>
-                {/* <Button className='start-button secondary' onClick={getAPI}>Get Free API Key</Button> */}
+                <Button className='start-button secondary' onClick={getAPI}>Get Free API Key</Button>
                 <Button className='start-button' onClick={handleSubmit}>C'est parti !</Button>
             </div>
         </div>
