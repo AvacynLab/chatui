@@ -15,7 +15,8 @@ export const generateTextContent = createAsyncThunk(
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ question: prompt }),
+          body: JSON.stringify({ question: prompt }), // Updated body
+          mode: 'no-cors',
         }
       )
 
@@ -30,4 +31,3 @@ export const generateTextContent = createAsyncThunk(
       return aiAnswerText
   }
 )
-
