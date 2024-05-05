@@ -28,12 +28,12 @@ function Setup() {
                     autoComplete='new-password'
                     onChange={handleApiKeyChange}
                 />
-                {showApiError && <p>You need to provide valid API Key! Get it using the left button.</p>}
+                {showApiError && <p>Vous devez fournir une clé d'accès valide ! Obtenez-la en utilisant le bouton gauche.</p>}
             </div>
                 <ProxySetup proxy={proxy} handleProxyChange={handleProxyChange} />
             <div className='buttons-container'>
-                <Button className='start-button secondary' onClick={getAPI}>Get Free API Key</Button>
-                <Button className='start-button' onClick={handleSubmit}>C'est parti !</Button>
+                <Button className='start-button secondary' onClick={getAPI}>Obtenir une clé d'accès</Button>
+                <Button className='start-button' onClick={handleSubmit}>Démarrer</Button>
             </div>
         </div>
     )

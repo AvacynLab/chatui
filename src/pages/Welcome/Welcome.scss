@@ -71,6 +71,29 @@
       border: 1px solid transparent;
       cursor: pointer;
       transition: 0.2s;
+
+  
+      &.secondary {
+        border: var(--light-border);
+        color: var(--text-color);
+        background-color: var(--transparent-bg);
+        &:hover {
+            filter: brightness(90%);
+            transition: 0.2s;
+          }
+      }
+    }
+
+    .start-button-gr {
+      background-color: var(--button-background);
+      padding: 18px 24px;
+      border-radius: 99em;
+      font-size: 16px;
+      width: fit-content;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: 0.2s;
+
   
       &.secondary {
         border: var(--light-border);

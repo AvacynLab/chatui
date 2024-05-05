@@ -10,9 +10,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   --white: rgba(255, 255, 255, 0.87);
-  --blue-color: #096EFF;
+  --blue-color: #ff0f7b;
 
-  --background-color: hsl(0, 0%, 2%);
+  --background-color: #0b0b0b;
   --text-color: var(--white);
   --button-background: var(--blue-color);
   --transparent-bg: transparent;
@@ -23,7 +23,7 @@
   --input-focus-background: rgba(255, 255, 255, 0.1);
   --input-focus-border: rgba(255, 255, 255, 0.5);
   --setup-border: 1px solid transparent;
-  --gemini-font-color: linear-gradient(60deg, #598FF0, #B1C5FF);
+  --gemini-font-color: linear-gradient(315deg, #ff0f7b, #f98736);
 
   color-scheme: light dark;
   color: var(--text-color);

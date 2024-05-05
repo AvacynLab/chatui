@@ -31,7 +31,7 @@ export const useSetup = () => {
     }
 
     const getAPI = () => {
-        window.open('https://makersuite.google.com/app/apikey')
+        window.open('https://avacyn.fr/')
     }
 
     return { handleNameChange, handleApiKeyChange, handleSubmit, getAPI, name, API_KEY, showApiError, handleProxyChange, proxy }

@@ -17,13 +17,13 @@ function Welcome() {
         {!showInputs ?
           (
             <>
-              <h3>Titre</h3>
-              <Button className='start-button' onClick={() => setShowInputs(true)}>C'est parti !</Button>
+              <h3>Ne soyez pas jaloux de Tony, ayez votre propre Jarvis !</h3>
+              <Button className='start-button' onClick={() => setShowInputs(true)}>Démarrer</Button>
             </>) :
           (<Setup />)
         }
       </div>
-      <span className='disclaimer'>Cette application est un prototype.</span>
+      <span className='disclaimer'>v0.1.4  Cette application est un prototype, Avacyn peut faire des erreurs. Pensez à vérifier les informations importantes.</span>
     </div>
   )
 }

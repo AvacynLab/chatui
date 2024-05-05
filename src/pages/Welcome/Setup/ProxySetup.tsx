@@ -33,7 +33,7 @@ function ProxySetup({ handleProxyChange, proxy }: ProxyProps) {
                         autoComplete='new-password'
                         onChange={handleProxyChange}
                     />
-                    <p>Example of a valid proxy to enter:<br />https://corsproxy.io/?</p>
+                    <p>Exemple de proxy valide à saisir :<br />https://corsproxy.io/?</p>
                 </div>
             )}
         </>
