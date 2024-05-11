@@ -11,7 +11,8 @@ const initialUserState: UserState = {
     data: []
   },
   proxy: undefined,
-  theme: 'dark'
+  theme: 'dark',
+  sessionid: ''
 }
 
 const userSlice = createSlice({
@@ -31,9 +32,13 @@ const userSlice = createSlice({
     },
     clearChat: (state) => {
       state.conversation = initialUserState.conversation
+      state.sessionid = initialUserState.sessionid
     },
     setTheme: (state, action) => {
       state.theme = action.payload
+    },
+    setSessionid: (state, action) => {
+      state.sessionid = action.payload.sessionid
     },
   },
   extraReducers: (builder) => {

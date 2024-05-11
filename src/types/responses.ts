@@ -1,5 +1,6 @@
 export interface textResponse {
-    text: string 
+    text: string
+    sessionId: string 
     }
 
   export interface Message {
@@ -18,4 +19,5 @@ export interface textResponse {
     },
     proxy?: string
     theme: 'dark' | 'light'
+    sessionid: string
   }
