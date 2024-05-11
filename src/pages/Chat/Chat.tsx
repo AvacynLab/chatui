@@ -6,7 +6,7 @@ function Chat() {
     return (
         <div className='chat-page-container'>
             <Header />
-            <PromptGenerator />
+            <PromptGenerator />   
         </div>
     )
 }

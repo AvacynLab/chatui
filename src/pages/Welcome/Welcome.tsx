@@ -23,7 +23,7 @@ function Welcome() {
           (<Setup />)
         }
       </div>
-      <span className='disclaimer'>v0.1.4  Cette application est un prototype, Avacyn peut faire des erreurs. Pensez à vérifier les informations importantes.</span>
+      <span className='disclaimer'>Cette application est un prototype, Avacyn peut faire des erreurs. Pensez à vérifier les informations importantes. | Avacyn v0.1.5</span>
     </div>
   )
 }
