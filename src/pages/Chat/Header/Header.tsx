@@ -19,6 +19,7 @@ function Header() {
     return (
         <div className='header'>
             <span>Bonjour, {name}</span>
+            <span>Avacyn • v0.3.0</span>
             <div className='header-buttons'>
             {/* <Icon className='github-icon' icon='mdi:github' height={28} onClick={openGithub} /> */}
             <Icon className='clear-icon' icon='mdi:trashcan-outline' height={28} onClick={() => dispatch(clearChat())} />

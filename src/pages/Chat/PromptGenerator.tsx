@@ -3,9 +3,20 @@ import { usePromptGenerator } from './hooks'
 import { useRef, useEffect } from 'react'
 import LoadingLine from '../../components/LoadingLine'
 import Button from '../../components/Button'
+import { Upload } from 'react-feather'
 
 function PromptGenerator() {
-  const { handlePromptChange, handleSendPrompt, handleKeyDown, data, prompt, textareaRef, loading, error } = usePromptGenerator()
+  const {
+    handlePromptChange,
+    handleSendPrompt,
+    handleKeyDown,
+    handleFileUpload,
+    data,
+    prompt,
+    textareaRef,
+    loading,
+    error,
+  } = usePromptGenerator()
 
   const messagesContainerRef = useRef<HTMLDivElement>(null)
 
@@ -16,33 +27,53 @@ function PromptGenerator() {
   }, [data])
 
   return (
-    <div className='conversation-container'>
-      <div className='messages-container' ref={messagesContainerRef}>
-        {data &&
-          data.map((message, index) => (
-            <div className={`message ${message.type === 'inbound' ? 'inbound' : 'outbound'}`} key={index}>
-              <strong>{message.type === 'inbound' ? 'Avacyn' : 'Vous'}</strong>
-              {message.type === 'inbound' ? (
-                <ReactMarkdown className='markdown-render'>{message.message}</ReactMarkdown>
-              ) : (
-                <p>{message.message}</p>
-              )}
-            </div>
-          ))}
+    <div className="chat-page-container">
+      <div className="conversation-container">
+        <div className="messages-container" ref={messagesContainerRef}>
+          {data &&
+            data.map((message, index) => (
+              <div
+                className={`message ${message.type === 'inbound' ? 'inbound' : 'outbound'}`}
+                key={index}
+              >
+                <strong style={{ color: '#8952E0' }}>
+                  {message.type === 'inbound' ? 'Avacyn' : 'Vous'}
+                </strong>
+                {message.type === 'inbound' ? (
+                  <ReactMarkdown className="markdown-render">{message.message}</ReactMarkdown>
+                ) : (
+                  <p>{message.message}</p>
+                )}
+              </div>
+            ))}
           {loading && <LoadingLine />}
-          {error && <div className='error'>{error} <br />Clé d'accès expirée. </div>}
-      </div>
-      <div className='message-input-container'>
-        <textarea
-          id='prompt'
-          value={prompt}
-          className='prompt-input'
-          placeholder=''
-          onChange={handlePromptChange}
-          onKeyDown={handleKeyDown}
-          ref={textareaRef}
-        />
-        <Button disabled={!prompt || loading} onClick={handleSendPrompt}>Envoyer</Button>
+          {error && (
+            <div className="error">
+              Une erreur est survenue. Envoi du message échoué. <br /> {error}
+            </div>
+          )}
+        </div>
+        <div className="message-input-container">
+          <textarea
+            id="prompt"
+            value={prompt}
+            className="prompt-input"
+            placeholder=""
+            onChange={handlePromptChange}
+            onKeyDown={handleKeyDown}
+            ref={textareaRef}
+          />
+          
+          <div className="file-input-container">
+            <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
+
+            <Upload size={16} color="#ffffff" /> {/* Use Feather icon */}
+
+          </div>
+          <Button  disabled={!prompt || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
+            Envoyer
+          </Button>
+        </div>
       </div>
     </div>
   )
