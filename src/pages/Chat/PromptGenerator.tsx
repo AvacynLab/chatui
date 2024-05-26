@@ -58,7 +58,7 @@ function PromptGenerator() {
             id="prompt"
             value={prompt}
             className="prompt-input"
-            placeholder=""
+            placeholder="Comment puis-je vous aider ?"
             onChange={handlePromptChange}
             onKeyDown={handleKeyDown}
             ref={textareaRef}
