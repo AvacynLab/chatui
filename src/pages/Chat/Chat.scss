@@ -48,7 +48,7 @@
 
         .message-input-container {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             padding: 2%;
             gap: 24px;
@@ -70,8 +70,19 @@
               height: 15px; /* Adjust height as needed */
               opacity: 0;
               position: absolute;
-              top: 0;
-              right: 0;
+              top: -40%;
+              left: -50%;
+              cursor: pointer;
+            }
+
+            .mic-input { 
+
+              width: 100%;
+              height: 15px; /* Adjust height as needed */
+              opacity: 0;
+              position: absolute;
+              top: -40%;
+              right: -50%;
               cursor: pointer;
             }
       

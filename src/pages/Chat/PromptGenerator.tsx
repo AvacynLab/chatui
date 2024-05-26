@@ -3,7 +3,7 @@ import { usePromptGenerator } from './hooks'
 import { useRef, useEffect } from 'react'
 import LoadingLine from '../../components/LoadingLine'
 import Button from '../../components/Button'
-import { Upload } from 'react-feather'
+import { Upload, Mic } from 'react-feather'
 
 function PromptGenerator() {
   const {
@@ -63,13 +63,17 @@ function PromptGenerator() {
             onKeyDown={handleKeyDown}
             ref={textareaRef}
           />
-          
           <div className="file-input-container">
+            <Mic size={16} color="#ffffff" /> {/* Use Feather icon */}
+            <input type="file" id="fileInput" className="mic-input" />
+            
+          </div>
+          <div className="file-input-container">
+            <Upload size={16} color="#ffffff" /> {/* Use Feather icon */}
             <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
 
-            <Upload size={16} color="#ffffff" /> {/* Use Feather icon */}
-
           </div>
+          
           <Button  disabled={!prompt || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
             Envoyer
           </Button>
