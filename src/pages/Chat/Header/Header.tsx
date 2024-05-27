@@ -28,10 +28,11 @@ function Header() {
             <span>Bonjour, {name}</span>
             <span>Avacyn • v0.3.0</span>
             <div className='header-buttons'>
-                <Icon className='clear-icon' icon='mdi:trashcan-outline' height={28} onClick={() => dispatch(clearChat())} />
+                <Icon className='clear-icon' icon='fluent:person-info-24-regular' height={28} onClick={openInfo} />
+                <Icon className='clear-icon' icon='fluent:person-delete-24-regular' height={28} onClick={() => dispatch(clearChat())} />
                 <ThemeToggle />
                 <Logout />
-                <Icon className='clear-icon' icon='mdi:information' height={28} onClick={openInfo} />
+                
             </div>
             <Modal
                 isOpen={modalIsOpen}

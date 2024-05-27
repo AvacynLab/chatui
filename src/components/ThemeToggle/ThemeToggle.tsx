@@ -7,9 +7,9 @@ function ThemeToggle() {
     return (
         <button className='theme-toggle-container' onClick={handleThemeToggle}>
             {theme === 'light' ?
-                <Icon className='theme-icon' icon='solar:sun-bold' height={28} />
+                <Icon className='theme-icon' icon='line-md:sun-rising-filled-loop' height={28} />
                 :
-                <Icon className='theme-icon' icon='akar-icons:moon-fill' height={28} />}
+                <Icon className='theme-icon' icon='line-md:moon-filled-alt-loop' height={28} />}
         </button>
     )
 }

@@ -63,17 +63,15 @@ function PromptGenerator() {
             onKeyDown={handleKeyDown}
             ref={textareaRef}
           />
-          <div className="file-input-container">
-            <Mic size={16} color="#ffffff" /> {/* Use Feather icon */}
-            <input type="file" id="fileInput" className="mic-input" />
-            
+          {/* <div className="file-input-container">
+            <Mic size={16} color="var(--text-color)" /> 
+            <input type="file" id="fileInput" className="mic-input" />  
           </div>
           <div className="file-input-container">
-            <Upload size={16} color="#ffffff" /> {/* Use Feather icon */}
+            <Upload size={16} color="var(--text-color)" /> 
             <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
-
           </div>
-          
+           */}
           <Button  disabled={!prompt || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
             Envoyer
           </Button>
