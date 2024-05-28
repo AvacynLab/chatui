@@ -38,36 +38,23 @@ export const usePromptGenerator = () => {
       return;
     }
 
-    // Read file content as base64
-    const readFileAsBase64 = (file: File): Promise<string> => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.onerror = error => reject(error);
-        reader.readAsDataURL(file);
-      });
-    };
+    // Prepare the FormData
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('filename', file.name);
+    formData.append('type', file.type);
 
     try {
-      const fileContent = await readFileAsBase64(file);
-      const base64Content = fileContent.split(',')[1]; // Extract base64 part
-
-      const body = JSON.stringify({
-        filename: file.name,
-        content: base64Content,
-        type: file.type
-      });
-
       // Make API call to Flowise using Fetch
       const response = await fetch(
-        `${proxy ? proxy : 'https://corsproxy.io/?'}https://api.avacyn.fr/api/v1/vector/upsert/0772f062-4dbb-492f-96be-2164362a59cc`, // Replace with your actual Flowise API endpoint
+        `${proxy ? proxy : 'https://corsproxy.io/?'}https://api.avacyn.fr/api/v1/vector/upsert/56a6e07c-c83d-4b83-bbbd-73e8b2c7bd28`, // Replace with your actual Flowise API endpoint
         {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json',
+            // Note: When using FormData, 'Content-Type' should not be set manually as it will be set by the browser to `multipart/form-data`
           },
-          body: body,
+          body: formData,
         }
       );
 

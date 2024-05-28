@@ -3,7 +3,7 @@ import { usePromptGenerator } from './hooks'
 import { useRef, useEffect } from 'react'
 import LoadingLine from '../../components/LoadingLine'
 import Button from '../../components/Button'
-import { Upload, Mic } from 'react-feather'
+import { Icon } from '@iconify/react'
 
 function PromptGenerator() {
   const {
@@ -63,16 +63,16 @@ function PromptGenerator() {
             onKeyDown={handleKeyDown}
             ref={textareaRef}
           />
-          {/* <div className="file-input-container">
-            <Mic size={16} color="var(--text-color)" /> 
-            <input type="file" id="fileInput" className="mic-input" />  
+          <div className="icons-container">
+            <div className="icon-wrapper">
+              <Icon className='icon' icon='mdi:microphone' height={24} onClick={() => {/* handle microphone action */}} />
+            </div>
+            <div className="icon-wrapper">
+              <Icon className='icon' icon='mdi:upload' height={24} />
+              <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
+            </div>
           </div>
-          <div className="file-input-container">
-            <Upload size={16} color="var(--text-color)" /> 
-            <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
-          </div>
-           */}
-          <Button  disabled={!prompt || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
+          <Button disabled={!prompt || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
             Envoyer
           </Button>
         </div>
