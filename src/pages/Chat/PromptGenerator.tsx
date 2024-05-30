@@ -1,3 +1,4 @@
+// promptgenerator.tsx
 import ReactMarkdown from 'react-markdown';
 import { usePromptGenerator } from './hooks';
 import { useRef, useEffect } from 'react';
@@ -46,13 +47,34 @@ function PromptGenerator() {
                 className={`message ${message.type === 'inbound' ? 'inbound' : 'outbound'}`}
                 key={index}
               >
-                <strong style={{ color: '#8952E0' }}>
-                  {message.type === 'inbound' ? 'Avacyn' : 'Vous'}
-                </strong>
+                {message.type === 'inbound' && (
+                  <strong style={{ color: '#8952E0' }}>
+                    Avacyn
+                  </strong>
+                )}
+                {message.type === 'outbound' && (
+                  <strong style={{ color: '#7D7F83' }}>
+                    Vous
+                  </strong>
+                )}
                 {message.type === 'inbound' ? (
                   <ReactMarkdown className="markdown-render">{message.message}</ReactMarkdown>
                 ) : (
                   <p>{message.message}</p>
+                )}
+                {/* Afficher les images pour les messages sortants */}
+                {message.type === 'outbound' && message.images && (
+                  <div className="images-preview-container">
+                    {message.images.map((image, imgIndex) => (
+                      <img
+                        key={imgIndex}
+                        src={image}
+                        alt={`Pasted ${imgIndex}`}
+                        className="pasted-image"
+                        onClick={() => handleImageClick(image)}
+                      />
+                    ))}
+                  </div>
                 )}
               </div>
             ))}

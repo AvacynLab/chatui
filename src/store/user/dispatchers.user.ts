@@ -50,8 +50,11 @@ export const generateTextContent = createAsyncThunk(
       const sessionId = data.sessionId || '';
 
       thunkApi.dispatch({ type: 'user/setSessionid', payload: { sessionid: sessionId } })
+      thunkApi.dispatch({ type: 'user/setImages', payload: { images: images } })
 
-      const aiAnswerText = data.text
+
+      const aiAnswerText = data.text;
+      
 
       if (aiAnswerText === undefined) {
         throw Error("Problème de requête")
@@ -86,7 +89,8 @@ export const generateTextContent = createAsyncThunk(
       )
 
       const data: textResponse = await response.json()
-
+      
+      thunkApi.dispatch({ type: 'user/setImages', payload: { images: images } })
       const aiAnswerText = data.text
 
       if (aiAnswerText === undefined) {

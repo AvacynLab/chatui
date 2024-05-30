@@ -9,7 +9,7 @@ export const usePromptGenerator = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
   const dispatch: AppDispatch = useDispatch();
-  const { data, loading, error, apiKey, proxy } = useSelector((state: RootState) => ({
+  const { data, loading, error, apiKey, proxy, } = useSelector((state: RootState) => ({
     ...state.user.conversation,
     apiKey: state.user.API_KEY,
     sessionid: state.user.sessionid,

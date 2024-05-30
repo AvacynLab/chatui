@@ -8,11 +8,12 @@ const initialUserState: UserState = {
   conversation: {
     loading: false,
     error: undefined,
-    data: []
+    data: [],
   },
   proxy: undefined,
   theme: 'dark',
-  sessionid: ''
+  sessionid: '',
+  images: []
 }
 
 const userSlice = createSlice({
@@ -40,6 +41,9 @@ const userSlice = createSlice({
     setSessionid: (state, action) => {
       state.sessionid = action.payload.sessionid
     },
+    setImages: (state, action) => {
+      state.images = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +59,7 @@ const userSlice = createSlice({
         state?.conversation?.data?.push({
           type: 'outbound',
           message: action.meta.arg.prompt,
+          images: action.meta.arg.images,
           timestamp: outboundTimestamp,
         })
       })
@@ -65,6 +70,7 @@ const userSlice = createSlice({
         state?.conversation?.data?.push({
           type: 'inbound',
           message: action.payload,
+          images: action.meta.arg.images,
           timestamp: inboundTimestamp,
         })
       })
@@ -76,5 +82,5 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUser, clearUser, clearChat, setTheme } = userSlice.actions
+export const { setUser, clearUser, clearChat, setTheme, setImages } = userSlice.actions
 export default userSlice.reducer
