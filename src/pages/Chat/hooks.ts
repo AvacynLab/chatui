@@ -8,6 +8,11 @@ export const usePromptGenerator = () => {
   const [images, setImages] = useState<string[]>([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [audioBlob, setAudioBlob] = useState<Blob | undefined>(undefined);
+
   const dispatch: AppDispatch = useDispatch();
   const { data, loading, error, apiKey, proxy, } = useSelector((state: RootState) => ({
     ...state.user.conversation,
@@ -21,10 +26,11 @@ export const usePromptGenerator = () => {
   };
 
   const handleSendPrompt = () => {
-    if (prompt) {
-      dispatch(generateTextContent({ prompt, images }));
+    if (prompt || audioBlob) {
+      dispatch(generateTextContent({ prompt, images, audioBlob }));
       setPrompt('');
       setImages([]);
+      setAudioBlob(undefined);
     }
   };
 
@@ -48,6 +54,37 @@ export const usePromptGenerator = () => {
       }
     }
   };
+
+  // Gestion de l'audio
+  useEffect(() => {
+    if (audioChunks.length > 0) {
+      const blob = new Blob(audioChunks, { type: 'audio/webm' });
+      setAudioBlob(blob);
+    }
+  }, [audioChunks]);
+
+  const handleMicrophoneAction = () => {
+    if (!isRecording) {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+          const recorder = new MediaRecorder(stream);
+          recorder.ondataavailable = event => {
+            setAudioChunks((prevChunks) => [...prevChunks, event.data]);
+          };
+          recorder.start();
+          setMediaRecorder(recorder);
+          setIsRecording(true);
+        })
+        .catch(error => {
+          console.error('Error accessing microphone:', error);
+        });
+    } else {
+      mediaRecorder?.stop();
+      setIsRecording(false);
+    }
+  };
+
+  // Autres méthodes existantes
 
   const addImageToList = (imageUrl: string) => {
     setImages((prevImages) => [...prevImages, imageUrl]);
@@ -156,6 +193,7 @@ export const usePromptGenerator = () => {
     handleFileUpload,
     handleImageClick,
     handleImageDelete,
+    handleMicrophoneAction, // add handleMicrophoneAction here
     closeModal,
     data,
     prompt,
@@ -165,5 +203,7 @@ export const usePromptGenerator = () => {
     images,
     modalIsOpen,
     selectedImage,
+    isRecording,
+    audioBlob
   };
 };

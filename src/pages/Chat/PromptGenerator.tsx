@@ -1,4 +1,3 @@
-// promptgenerator.tsx
 import ReactMarkdown from 'react-markdown';
 import { usePromptGenerator } from './hooks';
 import { useRef, useEffect } from 'react';
@@ -27,6 +26,9 @@ function PromptGenerator() {
     images,
     modalIsOpen,
     selectedImage,
+    handleMicrophoneAction, // Here is the handleMicrophoneAction
+    isRecording, // To check recording state
+    audioBlob  // Add audioBlob extraction here
   } = usePromptGenerator();
 
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -113,14 +115,20 @@ function PromptGenerator() {
           )}
           <div className="icons-container">
             <div className="icon-wrapper">
-              {/* <Icon className='icon' icon='mdi:microphone' height={24} onClick={() => {handleMicrophoneAction}} /> */}
+              <Icon
+                className='icon'
+                icon='mdi:microphone'
+                height={24}
+                onClick={handleMicrophoneAction}
+                style={{ cursor: 'pointer', color: isRecording ? '#DC4A41' : '#8952E0' }} // Change color if recording
+              />
             </div>
             <div className="icon-wrapper">
               <Icon className='icon' icon='line-md:upload-loop' height={24} />
               <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
             </div>
           </div>
-          <Button disabled={!prompt || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
+          <Button disabled={(!prompt && !audioBlob) || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
             Envoyer
           </Button>
         </div>
