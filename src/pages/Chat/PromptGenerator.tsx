@@ -1,30 +1,40 @@
-import ReactMarkdown from 'react-markdown'
-import { usePromptGenerator } from './hooks'
-import { useRef, useEffect } from 'react'
-import LoadingLine from '../../components/LoadingLine'
-import Button from '../../components/Button'
-import { Icon } from '@iconify/react'
+import ReactMarkdown from 'react-markdown';
+import { usePromptGenerator } from './hooks';
+import { useRef, useEffect } from 'react';
+import LoadingLine from '../../components/LoadingLine';
+import Button from '../../components/Button';
+import { Icon } from '@iconify/react';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root'); // Adjust this selector according to your app's root element
 
 function PromptGenerator() {
   const {
     handlePromptChange,
     handleSendPrompt,
     handleKeyDown,
+    handlePaste,
     handleFileUpload,
+    handleImageClick,
+    handleImageDelete,
+    closeModal,
     data,
     prompt,
     textareaRef,
     loading,
     error,
-  } = usePromptGenerator()
+    images,
+    modalIsOpen,
+    selectedImage,
+  } = usePromptGenerator();
 
-  const messagesContainerRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
-  }, [data])
+  }, [data]);
 
   return (
     <div className="chat-page-container">
@@ -61,14 +71,30 @@ function PromptGenerator() {
             placeholder="Comment puis-je vous aider ?"
             onChange={handlePromptChange}
             onKeyDown={handleKeyDown}
+            onPaste={handlePaste}
             ref={textareaRef}
           />
+          {images.length > 0 && (
+            <div className="images-preview-container">
+              {images.map((image, index) => (
+                <div key={index} className="image-wrapper">
+                  <img
+                    src={image}
+                    alt={`Pasted ${index}`}
+                    className="pasted-image"
+                    onClick={() => handleImageClick(image)}
+                  />
+                  <button className="delete-button" onClick={() => handleImageDelete(index)}>✖</button>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="icons-container">
             <div className="icon-wrapper">
-              <Icon className='icon' icon='mdi:microphone' height={24} onClick={() => {/* handle microphone action */}} />
+              {/* <Icon className='icon' icon='mdi:microphone' height={24} onClick={() => {handleMicrophoneAction}} /> */}
             </div>
             <div className="icon-wrapper">
-              <Icon className='icon' icon='mdi:upload' height={24} />
+              <Icon className='icon' icon='line-md:upload-loop' height={24} />
               <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
             </div>
           </div>
@@ -77,8 +103,18 @@ function PromptGenerator() {
           </Button>
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Image Modal"
+        className="image-modal"
+        overlayClassName="image-modal-overlay"
+      >
+        {selectedImage && <img src={selectedImage} alt="Modal content" className="modal-image" />}
+        <button onClick={closeModal} className="close-modal-button">✖</button>
+      </Modal>
     </div>
-  )
+  );
 }
 
-export default PromptGenerator
+export default PromptGenerator;

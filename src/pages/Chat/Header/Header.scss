@@ -60,7 +60,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--setup-background); /* Assurez-vous que l'overlay ait une opacité pour voir la modale */
+    background: rgba(0, 0, 0, 0.7) /* Assurez-vous que l'overlay ait une opacité pour voir la modale */
 }
 
 .video-container {
