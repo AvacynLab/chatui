@@ -68,13 +68,22 @@ function PromptGenerator() {
                 {message.type === 'outbound' && message.images && (
                   <div className="images-preview-container">
                     {message.images.map((image, imgIndex) => (
-                      <img
+                      <div
                         key={imgIndex}
-                        src={image}
-                        alt={`Pasted ${imgIndex}`}
-                        className="pasted-image"
-                        onClick={() => handleImageClick(image)}
-                      />
+                        className="image-wrapper"
+                      >
+                        <img
+                          src={image}
+                          alt={`Pasted ${imgIndex}`}
+                          className="pasted-image"
+                        />
+                        <div className="image-hover-overlay">
+                          <Icon icon="mdi:delete" className="hover-icon delete-icon" onClick={(e) => { e.stopPropagation(); handleImageDelete(imgIndex); }} />
+                        </div>
+                        <button className="magnify-button" onClick={(e) => { e.stopPropagation(); handleImageClick(image); }}>
+                          <Icon icon="mdi:magnify" className="magnify-icon" />
+                        </button>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -106,9 +115,13 @@ function PromptGenerator() {
                     src={image}
                     alt={`Pasted ${index}`}
                     className="pasted-image"
-                    onClick={() => handleImageClick(image)}
                   />
-                  <button className="delete-button" onClick={() => handleImageDelete(index)}>✖</button>
+                  <div className="image-hover-overlay">
+                    <Icon icon="mdi:delete" className="hover-icon delete-icon" onClick={(e) => { e.stopPropagation(); handleImageDelete(index); }} />
+                  </div>
+                  <button className="magnify-button" onClick={(e) => { e.stopPropagation(); handleImageClick(image); }}>
+                    <Icon icon="mdi:magnify" className="magnify-icon" />
+                  </button>
                 </div>
               ))}
             </div>
