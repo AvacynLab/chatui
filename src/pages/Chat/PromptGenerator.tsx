@@ -1,3 +1,4 @@
+// promptgenerator.tsx
 import ReactMarkdown from 'react-markdown';
 import { usePromptGenerator } from './hooks';
 import { useRef, useEffect } from 'react';
@@ -5,6 +6,8 @@ import LoadingLine from '../../components/LoadingLine';
 import Button from '../../components/Button';
 import { Icon } from '@iconify/react';
 import Modal from 'react-modal';
+import Popup from '../../components/Popup/Popup';
+import SuggestionChat from '../../components/SuggestionChat'; // Import the SuggestionChat component
 
 Modal.setAppElement('#root'); // Adjust this selector according to your app's root element
 
@@ -26,9 +29,12 @@ function PromptGenerator() {
     images,
     modalIsOpen,
     selectedImage,
-    handleMicrophoneAction, // Here is the handleMicrophoneAction
-    isRecording, // To check recording state
-    audioBlob  // Add audioBlob extraction here
+    handleMicrophoneAction,
+    isRecording,
+    audioBlob,
+    handleAudioDelete,
+    handleAudioPlay,
+    handleSuggestionClick // Import the handleSuggestionClick function
   } = usePromptGenerator();
 
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -38,6 +44,8 @@ function PromptGenerator() {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   }, [data]);
+
+  const suggestions = ["How can I help?", "What are you looking for?", "Do you need assistance?"]; // Example suggestions
 
   return (
     <div className="chat-page-container">
@@ -64,7 +72,6 @@ function PromptGenerator() {
                 ) : (
                   <p>{message.message}</p>
                 )}
-                {/* Afficher les images pour les messages sortants */}
                 {message.type === 'outbound' && message.images && (
                   <div className="images-preview-container">
                     {message.images.map((image, imgIndex) => (
@@ -77,14 +84,16 @@ function PromptGenerator() {
                           alt={`Pasted ${imgIndex}`}
                           className="pasted-image"
                         />
-                        <div className="image-hover-overlay">
-                          <Icon icon="mdi:delete" className="hover-icon delete-icon" onClick={(e) => { e.stopPropagation(); handleImageDelete(imgIndex); }} />
-                        </div>
                         <button className="magnify-button" onClick={(e) => { e.stopPropagation(); handleImageClick(image); }}>
                           <Icon icon="mdi:magnify" className="magnify-icon" />
                         </button>
                       </div>
                     ))}
+                  </div>
+                )}
+                {message.audio && (
+                  <div className="audio-container">
+                    <audio controls src={URL.createObjectURL(message.audio)}></audio>
                   </div>
                 )}
               </div>
@@ -97,6 +106,10 @@ function PromptGenerator() {
           )}
         </div>
         <div className="message-input-container">
+          <SuggestionChat 
+            suggestions={suggestions} 
+            onSuggestionClick={handleSuggestionClick} 
+          />
           <textarea
             id="prompt"
             value={prompt}
@@ -107,6 +120,12 @@ function PromptGenerator() {
             onPaste={handlePaste}
             ref={textareaRef}
           />
+          {audioBlob && (
+            <div className="audio-preview-container">
+              <audio controls src={URL.createObjectURL(audioBlob)}></audio>
+              <button onClick={handleAudioDelete}>Supprimer</button>
+            </div>
+          )}
           {images.length > 0 && (
             <div className="images-preview-container">
               {images.map((image, index) => (
@@ -127,19 +146,19 @@ function PromptGenerator() {
             </div>
           )}
           <div className="icons-container">
-            <div className="icon-wrapper">
+            <Popup text="Utiliser le micro">
               <Icon
-                className='icon'
-                icon='mdi:microphone'
+                className='icon microphone-icon'
+                icon={isRecording ? 'line-md:loading-alt-loop' : 'fluent:slide-microphone-20-regular'}
                 height={24}
                 onClick={handleMicrophoneAction}
-                style={{ cursor: 'pointer', color: isRecording ? '#DC4A41' : '#8952E0' }} // Change color if recording
+                style={{ cursor: 'pointer', color: isRecording ? '#DC4A41' : '#8952E0' }}
               />
-            </div>
-            <div className="icon-wrapper">
-              <Icon className='icon' icon='line-md:upload-loop' height={24} />
+            </Popup>
+            <Popup text="Téléverser un fichier">
+              <Icon className='icon' icon='line-md:upload-outline-loop' height={24} />
               <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
-            </div>
+            </Popup>
           </div>
           <Button disabled={(!prompt && !audioBlob) || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
             Envoyer

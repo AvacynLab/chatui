@@ -1,0 +1,52 @@
+.popup {
+  position: relative;
+  display: inline-block; 
+}
+
+.popup .popup-text {
+  visibility: hidden; 
+  width: 160px; /* Augmenter légèrement la largeur pour l'effet */
+  background: var(--setup-background); /* Fond semi-transparent */
+  color: var(--text-color);
+  text-align: center;
+  border-radius: 12px; /* Arrondir les bords */
+  padding: 8px 0; /* Ajouter du padding */
+  position: absolute;
+  z-index: 1;
+  top: 150%; 
+  left: 50%;
+  transform: translateX(-50%) scale(0.8); /* Initialement réduit */
+  opacity: 0; 
+  transition: opacity 0.3s, transform 0.3s; /* Transition pour l'animation */
+  font-size: 14px; /* Réduire la taille du texte */
+  backdrop-filter: blur(18px); /* Ajouter l'effet de flou */
+}
+
+.popup .popup-text::after {
+  content: '';
+  position: absolute;
+  top: -10px; 
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgb(255, 255, 255) transparent; /* Pointe avec fond semi-transparent */
+}
+
+.popup.active .popup-text {
+  visibility: visible; 
+  opacity: 1; 
+  transform: translateX(-50%) scale(1); /* Effet de zoom */
+  animation: fadeIn 0.3s ease-in-out; /* Animation */
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.8);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+  }
+}

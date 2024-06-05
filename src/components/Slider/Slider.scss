@@ -1,0 +1,163 @@
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(18px);
+  z-index: -1;
+  border-radius: 1rem;
+  
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slider-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  
+}
+
+.slide-1 {
+  flex-direction: row;
+  text-align: left;
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.text-content h2 {
+  margin-bottom: 10px;
+  font-size: 3.5rem;
+}
+
+.text-content p {
+  font-size: 1.3rem;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-content img {
+  max-width: 80%;
+  height: auto;
+  margin: 0;
+}
+
+.slide-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.slide-2-content {
+  display: flex;
+  width: 100%;
+}
+
+.sub-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding: 20px;
+}
+
+.sub-section img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.sub-section h3 {
+  margin: 10px 0;
+  font-size: 2rem;
+  color: #8952E0;
+}
+
+.sub-section p {
+  margin: 10px 0;
+  font-size: 1.3rem;
+}
+
+
+
+.slide h2,
+.slide h3 {
+  margin: 10px 0;
+  color:#8952E0;
+  
+}
+
+.slide p {
+  margin: 10px 0;
+  font-size: 1.3rem;
+}
+
+.slider-controls {
+  position: fixed;
+  bottom: 50px; // Adjust the distance from the bottom as needed
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  z-index: 10;
+}
+
+.slider-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: var(--light-border);
+  border-radius: 50%;
+  background-color: var(--setup-background);
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.slider-button:hover {
+  background-color: #8952E0;
+}
+
+.slider-button svg {
+  pointer-events: none;
+}

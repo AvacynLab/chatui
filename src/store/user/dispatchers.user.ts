@@ -66,7 +66,7 @@ export const generateTextContent = createAsyncThunk(
     };
 
     const response = await fetch(
-      `${proxy ? proxy : 'https://corsproxy.io/?'}https://api.avacyn.fr/api/v1/prediction/0772f062-4dbb-492f-96be-2164362a59cc`,
+      `${proxy ? proxy : ''}https://api.avacyn.fr/api/v1/prediction/0772f062-4dbb-492f-96be-2164362a59cc`,
       {
         method: 'POST',
         headers: {

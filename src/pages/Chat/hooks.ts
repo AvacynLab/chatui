@@ -1,3 +1,4 @@
+// hooks.ts
 import { AppDispatch, RootState } from '../../store/index';
 import { generateTextContent } from "../../store/user/dispatchers.user";
 import { useState, ChangeEvent, useEffect, useRef } from "react";
@@ -34,6 +35,11 @@ export const usePromptGenerator = () => {
     }
   };
 
+  const handleSuggestionClick = (suggestion: string) => {
+    setPrompt(suggestion);
+    textareaRef.current?.focus();
+  };
+
   const handlePaste = (event: React.ClipboardEvent<HTMLTextAreaElement>) => {
     const items = event.clipboardData?.items;
     if (items) {
@@ -55,7 +61,6 @@ export const usePromptGenerator = () => {
     }
   };
 
-  // Gestion de l'audio
   useEffect(() => {
     if (audioChunks.length > 0) {
       const blob = new Blob(audioChunks, { type: 'audio/webm' });
@@ -84,7 +89,18 @@ export const usePromptGenerator = () => {
     }
   };
 
-  // Autres méthodes existantes
+  const handleAudioDelete = () => {
+    setAudioBlob(undefined);
+    setAudioChunks([]);
+  };
+
+  const handleAudioPlay = () => {
+    if (audioBlob) {
+      const audioURL = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioURL);
+      audio.play();
+    }
+  };
 
   const addImageToList = (imageUrl: string) => {
     setImages((prevImages) => [...prevImages, imageUrl]);
@@ -125,7 +141,7 @@ export const usePromptGenerator = () => {
 
       async function query(formData: FormData) {
         const response = await fetch(
-          `${proxy ? proxy : ''}https://api.avacyn.fr/api/v1/vector/upsert/56a6e07c-c83d-4b83-bbbd-73e8b2c7bd28`,
+          `${proxy ? proxy : 'https://corsproxy.io/?'}https://api.avacyn.fr/api/v1/vector/upsert/56a6e07c-c83d-4b83-bbbd-73e8b2c7bd28`,
           {
             method: "POST",
             body: formData,
@@ -171,7 +187,7 @@ export const usePromptGenerator = () => {
   }, [prompt]);
 
   const handleImageClick = (image: string) => {
-    console.log(`Image clicked: ${image}`); // Debug logging
+    console.log(`Image clicked: ${image}`);
     setSelectedImage(image);
     setModalIsOpen(true);
   };
@@ -193,7 +209,7 @@ export const usePromptGenerator = () => {
     handleFileUpload,
     handleImageClick,
     handleImageDelete,
-    handleMicrophoneAction, // add handleMicrophoneAction here
+    handleMicrophoneAction,
     closeModal,
     data,
     prompt,
@@ -204,6 +220,9 @@ export const usePromptGenerator = () => {
     modalIsOpen,
     selectedImage,
     isRecording,
-    audioBlob
+    audioBlob,
+    handleAudioDelete,
+    handleAudioPlay,
+    handleSuggestionClick // Export handleSuggestionClick
   };
 };

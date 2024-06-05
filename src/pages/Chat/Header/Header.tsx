@@ -1,36 +1,45 @@
-import { Icon } from '@iconify/react'
-import { useSelector, useDispatch } from 'react-redux'
-import './Header.scss'
-import Logout from '../../../components/Logout/Logout'
-import { RootState } from '../../../store/index'
-import { clearChat } from '../../../store/user/userSlice'
-import ThemeToggle from '../../../components/ThemeToggle'
-import { useState } from 'react'
-import Modal from 'react-modal'
+import { useState } from 'react';
+import { Icon } from '@iconify/react';
+import { useSelector, useDispatch } from 'react-redux';
+import './Header.scss';
+import Logout from '../../../components/Logout/Logout';
+import { RootState } from '../../../store/index';
+import { clearChat } from '../../../store/user/userSlice';
+import ThemeToggle from '../../../components/ThemeToggle';
+import Modal from 'react-modal';
+import Slider from '../../../components/Slider/Slider';
+import Popup from '../../../components/Popup/Popup'; // Importation du composant Popup
 
 Modal.setAppElement('#root'); // Cette ligne est nécessaire pour l'accessibilité
 
 function Header() {
-    const { name } = useSelector((state: RootState) => state.user)
-    const dispatch = useDispatch()
-    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const { name } = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const openInfo = () => {
-        setModalIsOpen(true)
-    }
+        setModalIsOpen(true);
+    };
 
     const closeModal = () => {
-        setModalIsOpen(false)
-    }
+        setModalIsOpen(false);
+    };
 
     return (
         <div className='header'>
             <span>Bonjour, {name}</span>
 
             <div className='header-buttons'>
-                <Icon className='clear-icon' icon='fluent:person-info-24-regular' height={28} onClick={openInfo} />
-                <Icon className='clear-icon' icon='fluent:person-delete-24-regular' height={28} onClick={() => dispatch(clearChat())} />
-                <ThemeToggle />
+                <Popup text="Tuto & informations">
+                    <Icon className='clear-icon' icon='fluent:person-info-24-regular' height={28} onClick={openInfo} />
+                </Popup>
+                <Popup text="Supprimer le chat">
+                    <Icon className='clear-icon' icon='fluent:person-delete-24-regular' height={28} onClick={() => dispatch(clearChat())} />
+                </Popup>
+                <Popup text="Changer le thème">
+                    <ThemeToggle />
+                </Popup>
+                
                 <Logout />
                 
             </div>
@@ -41,19 +50,12 @@ function Header() {
                 className="modal"
                 overlayClassName="modal-overlay"
             >
-                <div className='video-container'>
-                    <iframe
-                        width="560"
-                        height="315"
-                        src="https://www.youtube.com/embed/nQJ5yTqysDc"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
+                <div className='slider-container'>
+                    <Slider />
                 </div>
             </Modal>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;
