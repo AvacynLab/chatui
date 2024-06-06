@@ -9,19 +9,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --white: rgba(255, 255, 255, 0.87);
+  --white: #F1F1F2;
   --blue-color: #8952E0;
 
   --background-color: #171A1D;
   --text-color: var(--white);
   --button-background: var(--blue-color);
   --transparent-bg: transparent;
-  --light-border: 1px solid rgba(255, 255, 255, 0.4);
+  --light-border: 1px solid #33373D;
   --input-background: transparent;
-  --input-border: 1px solid rgba(255, 255, 255, 0.4);
+  --input-border: 1px solid #33373D;
   --setup-background: linear-gradient(121deg, rgba(255, 255, 255, 0.07) -12.02%, rgba(255, 255, 255, 0.01) 87.55%);
-  --input-focus-background: rgba(255, 255, 255, 0.1);
-  --input-focus-border: rgba(255, 255, 255, 0.5);
+  --input-focus-background: #1D2025;
+  --input-focus-border: #33373D;
   --setup-border: 1px solid transparent;
   --gemini-font-color: linear-gradient(315deg, #3B1676, #8952E0);
 

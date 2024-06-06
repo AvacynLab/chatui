@@ -1,3 +1,4 @@
+/* CSS */
 .chat-page-container {
   width: 100%;
   overflow: hidden; /* Suppression du scroll de la page principale */
@@ -14,9 +15,8 @@
 
 .messages-container {
   display: flex;
-  margin-top: auto;
   flex-direction: column;
-  flex-grow: 10000;
+  flex-grow: 1;
   padding: 3%;
   overflow-y: auto;
   scroll-behavior: smooth; /* Scroll fluide */
@@ -27,12 +27,12 @@
 }
 
 .messages-container::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #1D2025; 
   border-radius: 10px;
 }
 
 .messages-container::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #8952E0; 
   border-radius: 10px;
 }
 
@@ -65,12 +65,19 @@
   padding: 10px;
 }
 
-.message-input-container {
+.interaction-container {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   justify-content: center;
   padding: 2%;
-  gap: 24px;
+}
+
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
 }
 
 .prompt-input {
@@ -85,10 +92,24 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 10px;
+  border: var(--input-border);
+  border-radius: 12px;
+  padding: 15px;
+  transition: background-color 0.3s, border-color 0.3s, opacity 0.4s;
+}
+
+.images-preview-container:hover {
+  outline: none;
+  background-color: var(--input-focus-background);
+  border-color: var(--input-focus-border);
+  border-radius: 24px;
 }
 
 .image-wrapper {
   position: relative;
+  border-bottom: var(--input-border);
+  border-top: var(--input-border);
+  border-radius: 12px;
 }
 
 .pasted-image {
@@ -149,12 +170,29 @@
   font-size: 12px;
 }
 
+.icons-and-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
 .icons-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
+  justify-content: center;
+  gap: 15px;
+  border: var(--input-border);
+  border-radius: 12px;
+  padding: 15px;
+  transition: background-color 0.3s, border-color 0.3s, opacity 0.4s;
+}
+
+.icons-container:hover {
+  outline: none;
+  background-color: var(--input-focus-background);
+  border-color: var(--input-focus-border);
+  border-radius: 24px;
 }
 
 .icon-wrapper {
@@ -217,4 +255,25 @@
   font-size: 24px;
   cursor: pointer;
   color: #DC4A41;
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #DC4A41;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #a32b27;
+}
+
+.delete-icon {
+  font-size: 20px;
 }

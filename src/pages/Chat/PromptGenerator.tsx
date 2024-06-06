@@ -7,9 +7,10 @@ import Button from '../../components/Button';
 import { Icon } from '@iconify/react';
 import Modal from 'react-modal';
 import Popup from '../../components/Popup/Popup';
-import SuggestionChat from '../../components/SuggestionChat'; // Import the SuggestionChat component
+import SuggestionChat from '../../components/SuggestionChat';
+import CustomAudioPlayer from '../../components/CustomAudioPlayer';
 
-Modal.setAppElement('#root'); // Adjust this selector according to your app's root element
+Modal.setAppElement('#root');
 
 function PromptGenerator() {
   const {
@@ -34,7 +35,7 @@ function PromptGenerator() {
     audioBlob,
     handleAudioDelete,
     handleAudioPlay,
-    handleSuggestionClick // Import the handleSuggestionClick function
+    handleSuggestionClick
   } = usePromptGenerator();
 
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -45,7 +46,12 @@ function PromptGenerator() {
     }
   }, [data]);
 
-  const suggestions = ["How can I help?", "What are you looking for?", "Do you need assistance?"]; // Example suggestions
+  const suggestions = [
+    "Recherche-moi l'actualité d'aujourd'hui.",
+    "Peux-tu m'écrire un post LinkedIn pour...",
+    "Donne-moi des conseils pour...",
+    "Rédige moi une étude de marché sur..."
+  ];
 
   return (
     <div className="chat-page-container">
@@ -93,7 +99,7 @@ function PromptGenerator() {
                 )}
                 {message.audio && (
                   <div className="audio-container">
-                    <audio controls src={URL.createObjectURL(message.audio)}></audio>
+                    <CustomAudioPlayer audioBlob={message.audio} onDelete={handleAudioDelete} />
                   </div>
                 )}
               </div>
@@ -105,64 +111,67 @@ function PromptGenerator() {
             </div>
           )}
         </div>
-        <div className="message-input-container">
+        <div className="interaction-container">
           <SuggestionChat 
             suggestions={suggestions} 
             onSuggestionClick={handleSuggestionClick} 
           />
-          <textarea
-            id="prompt"
-            value={prompt}
-            className="prompt-input"
-            placeholder="Comment puis-je vous aider ?"
-            onChange={handlePromptChange}
-            onKeyDown={handleKeyDown}
-            onPaste={handlePaste}
-            ref={textareaRef}
-          />
-          {audioBlob && (
-            <div className="audio-preview-container">
-              <audio controls src={URL.createObjectURL(audioBlob)}></audio>
-              <button onClick={handleAudioDelete}>Supprimer</button>
-            </div>
-          )}
-          {images.length > 0 && (
-            <div className="images-preview-container">
-              {images.map((image, index) => (
-                <div key={index} className="image-wrapper">
-                  <img
-                    src={image}
-                    alt={`Pasted ${index}`}
-                    className="pasted-image"
-                  />
-                  <div className="image-hover-overlay">
-                    <Icon icon="mdi:delete" className="hover-icon delete-icon" onClick={(e) => { e.stopPropagation(); handleImageDelete(index); }} />
+          <div className="textarea-container">
+            <textarea
+              id="prompt"
+              value={prompt}
+              className="prompt-input"
+              placeholder=""
+              onChange={handlePromptChange}
+              onKeyDown={handleKeyDown}
+              onPaste={handlePaste}
+              ref={textareaRef}
+            />
+            {audioBlob && (
+              <div className="audio-preview-container">
+                <CustomAudioPlayer audioBlob={audioBlob} onDelete={handleAudioDelete} />
+              </div>
+            )}
+            {images.length > 0 && (
+              <div className="images-preview-container">
+                {images.map((image, index) => (
+                  <div key={index} className="image-wrapper">
+                    <img
+                      src={image}
+                      alt={`Pasted ${index}`}
+                      className="pasted-image"
+                    />
+                    <div className="image-hover-overlay">
+                      <Icon icon="mdi:delete" className="hover-icon delete-icon" onClick={(e) => { e.stopPropagation(); handleImageDelete(index); }} />
+                    </div>
+                    <button className="magnify-button" onClick={(e) => { e.stopPropagation(); handleImageClick(image); }}>
+                      <Icon icon="mdi:magnify" className="magnify-icon" />
+                    </button>
                   </div>
-                  <button className="magnify-button" onClick={(e) => { e.stopPropagation(); handleImageClick(image); }}>
-                    <Icon icon="mdi:magnify" className="magnify-icon" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-          <div className="icons-container">
-            <Popup text="Utiliser le micro">
-              <Icon
-                className='icon microphone-icon'
-                icon={isRecording ? 'line-md:loading-alt-loop' : 'fluent:slide-microphone-20-regular'}
-                height={24}
-                onClick={handleMicrophoneAction}
-                style={{ cursor: 'pointer', color: isRecording ? '#DC4A41' : '#8952E0' }}
-              />
-            </Popup>
-            <Popup text="Téléverser un fichier">
-              <Icon className='icon' icon='line-md:upload-outline-loop' height={24} />
-              <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
-            </Popup>
+                ))}
+              </div>
+            )}
           </div>
-          <Button disabled={(!prompt && !audioBlob) || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
-            Envoyer
-          </Button>
+          <div className="icons-and-button-container">
+            <div className="icons-container">
+              <Popup text="Utiliser le micro">
+                <Icon
+                  className='icon microphone-icon'
+                  icon={isRecording ? 'line-md:loading-alt-loop' : 'fluent:slide-microphone-20-regular'}
+                  height={24}
+                  onClick={handleMicrophoneAction}
+                  style={{ cursor: 'pointer', color: isRecording ? '#DC4A41' : '#8952E0' }}
+                />
+              </Popup>
+              <Popup text="Téléverser un fichier">
+                <Icon className='icon' icon='line-md:upload-outline-loop' height={24} />
+                <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
+              </Popup>
+            </div>
+            <Button disabled={(!prompt && !audioBlob) || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
+              Envoyer
+            </Button>
+          </div>
         </div>
       </div>
       <Modal
