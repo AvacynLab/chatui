@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 function ButtonSend ({ children, disabled, ...buttonProps }: ButtonProps) {
     return (
-    <button className={`button ${disabled ? 'disabled' : ''}`}
+    <button className={`buttonsend ${disabled ? 'disabled' : ''}`}
     { ...buttonProps } >
         {children}
     </button>

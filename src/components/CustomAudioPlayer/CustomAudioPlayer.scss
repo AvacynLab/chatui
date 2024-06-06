@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid #555;
+    border: var(--input-border);
     border-radius: 8px;
     padding: 5px;
+    background-color: #1D2025;
     
     &:hover {
       outline: none;
@@ -18,7 +19,7 @@
       border: none;
       color: white;
       padding: 15px;
-      border-radius: 8px;
+      border-radius: 20px;
       cursor: pointer;
       transition: background-color 0.3s ease, border-radius 0.1s ease-in-out, opacity 0.4s;
       display: flex;
@@ -28,7 +29,7 @@
       
       &:hover {
         background-color: #a32b27;
-        border-radius: 16px;
+        
       }
     }
   
@@ -37,7 +38,23 @@
     }
     
     audio {
-      width: 100%;
+      width: calc(100% - 60px); // Adjust width to fit nicely with the button
+      border-radius: 4px;
+      outline: none;
+  
+      &::-webkit-media-controls-panel {
+        background-color: #1D2025;
+      }
+  
+      &::-webkit-media-controls-play-button,
+      &::-webkit-media-controls-volume-slider {
+        color: #a32b27;
+
+      }
+  
+      &:focus {
+        outline: none;
+      }
     }
   }
   

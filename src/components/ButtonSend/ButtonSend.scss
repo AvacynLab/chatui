@@ -1,23 +1,29 @@
-.button {
-    background-color: var(--button-background);
-    color: var(--white);
-    padding: 12px 14px;
-    border-radius: 99em;
-    font-size: 14px;
-    width: fit-content;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: 0.2s;
-    white-space: nowrap;
-  
-    &.disabled {
-        filter: brightness(80%);
+.buttonsend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--button-background);
+  color: var(--white);
+  padding: 40px 14px;
+  border-radius: 24px;
+  font-size: 14px;
+  width: 100%; /* Adjusted to take full width of the container */
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+
+  &.disabled {
+      filter: brightness(80%);
       pointer-events: none;
-  
+      background-color: #33373D;
+      transition: 0.2s;
+      border-radius: 12px;
+
       &:hover {
-        filter: brightness(90%);
-        transition: 0.2s;
+          filter: brightness(90%);
+          transition: 0.2s;
+          background-color: #7a1665;
       }
-    }
   }
-  
+}

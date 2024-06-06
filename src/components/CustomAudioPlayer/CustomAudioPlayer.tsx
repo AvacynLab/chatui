@@ -12,7 +12,7 @@ const CustomAudioPlayer: React.FC<CustomAudioPlayerProps> = ({ audioBlob, onDele
   
   return (
     <div className="custom-audio-player">
-      <audio controls src={audioUrl}></audio>
+      <audio controls controlsList="nodownload" src={audioUrl}></audio>
       <button className="delete-button" onClick={onDelete}>
         <Icon icon="mdi:delete" className="delete-icon" />
       </button>

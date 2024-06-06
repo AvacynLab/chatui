@@ -81,10 +81,11 @@
 }
 
 .prompt-input {
-  height: auto;
+  
   max-height: 180px;
-  border-radius: 8px;
+  border-radius: 12px;
   resize: none;
+  min-height: auto;
 }
 
 .images-preview-container {
@@ -257,23 +258,4 @@
   color: #DC4A41;
 }
 
-.delete-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #DC4A41;
-  border: none;
-  color: white;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.delete-button:hover {
-  background-color: #a32b27;
-}
-
-.delete-icon {
-  font-size: 20px;
-}

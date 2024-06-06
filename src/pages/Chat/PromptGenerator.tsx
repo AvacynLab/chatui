@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { usePromptGenerator } from './hooks';
 import { useRef, useEffect } from 'react';
 import LoadingLine from '../../components/LoadingLine';
-import Button from '../../components/Button';
+import ButtonSend from '../../components/ButtonSend';
 import { Icon } from '@iconify/react';
 import Modal from 'react-modal';
 import Popup from '../../components/Popup/Popup';
@@ -168,9 +168,9 @@ function PromptGenerator() {
                 <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
               </Popup>
             </div>
-            <Button disabled={(!prompt && !audioBlob) || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
-              Envoyer
-            </Button>
+            <ButtonSend disabled={(!prompt && !audioBlob) || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
+              <Icon icon="mdi:send" width={24} />
+            </ButtonSend>
           </div>
         </div>
       </div>
