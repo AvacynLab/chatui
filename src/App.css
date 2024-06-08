@@ -50,13 +50,13 @@ input {
 textarea {
   width: 100%;
   background-color: var(--input-background);
-  color: var(--text-color);
+  color: rgba(191, 191, 191, 0.5);
   padding: 18px 24px;
   border: var(--input-border);
   transition: background-color 0.3s, border-color 0.3s, opacity 0.4s;
-  
+  border-radius: 12px;
   font-family: 'Google Sans', sans-serif;
-  
+  transition: 0.2s;
   
 }
 
@@ -64,5 +64,26 @@ textarea:focus {
   outline: none;
   background-color: var(--input-focus-background);
   border-color: var(--input-focus-border);
+  border-radius: 24px;
+  color: var(--text-color);
+  transition: 0.2s;
 
+}
+
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #1D2025; 
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #33373D;; 
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #8952E0; 
 }

@@ -34,7 +34,7 @@ function PromptGenerator() {
     isRecording,
     audioBlob,
     handleAudioDelete,
-    handleAudioPlay,
+    // handleAudioPlay,
     handleSuggestionClick
   } = usePromptGenerator();
 

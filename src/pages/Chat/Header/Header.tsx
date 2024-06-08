@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './Header.scss';
-import Logout from '../../../components/Logout/Logout';
-import { RootState } from '../../../store/index';
-import { clearChat } from '../../../store/user/userSlice';
+import ButtonLogOut from '../../../components/ButtonLogOut/ButtonLogOut';
+
+import { clearChat, clearUser } from '../../../store/user/userSlice';
 import ThemeToggle from '../../../components/ThemeToggle';
 import Modal from 'react-modal';
 import Slider from '../../../components/Slider/Slider';
-import Popup from '../../../components/Popup/Popup'; // Importation du composant Popup
+import Popup from '../../../components/Popup/Popup';
 
-Modal.setAppElement('#root'); // Cette ligne est nécessaire pour l'accessibilité
+Modal.setAppElement('#root');
 
 function Header() {
-    const { name } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -25,24 +24,36 @@ function Header() {
         setModalIsOpen(false);
     };
 
+    const handleLogout = () => {
+        dispatch(clearUser())
+    }
+
     return (
         <div className='header'>
-            <span>Bonjour, {name}</span>
-
-            <div className='header-buttons'>
+            <div className='header-box'>
+                <Icon className='burger-icon' icon='solar:hamburger-menu-broken' height={24} />
+            </div>
+            <div className='separator'>
+            </div>
+            <div className='header-box' onClick={openInfo}>
                 <Popup text="Tuto & informations">
-                    <Icon className='clear-icon' icon='fluent:person-info-24-regular' height={28} onClick={openInfo} />
+                    <Icon className='clear-icon' icon='fluent:person-info-24-regular' height={24} />
                 </Popup>
+            </div>
+            <div className='header-box' onClick={() => dispatch(clearChat())}>
                 <Popup text="Supprimer le chat">
-                    <Icon className='clear-icon' icon='fluent:person-delete-24-regular' height={28} onClick={() => dispatch(clearChat())} />
+                    <Icon className='clear-icon' icon='fluent:person-delete-24-regular' height={24} />
                 </Popup>
+            </div>
+            <div className='header-box'>
                 <Popup text="Changer le thème">
                     <ThemeToggle />
                 </Popup>
-                
-                <Logout />
-                
             </div>
+            <ButtonLogOut onClick={handleLogout}>
+                <Icon icon="line-md:log-out" width={24} />
+            </ButtonLogOut>
+
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

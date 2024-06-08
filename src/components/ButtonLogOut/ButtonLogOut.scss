@@ -1,0 +1,25 @@
+.buttonlogout {
+    background-color: #33373D;
+    color: var(--white);
+    padding: 12px ;
+    border-radius: 12px;
+    font-size: 14px;
+    width: fit-content;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+    margin-left: 24px;
+  
+  
+      &:hover {
+        filter: brightness(90%);
+        transition: 0.2s;
+        background-color: var(--input-focus-background);
+        border-color: #8952E0;
+        background-color: #8952E0;
+        border-radius: 24px;
+      }
+    }
+  
+  

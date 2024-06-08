@@ -1,6 +1,6 @@
 .popup {
   position: relative;
-  display: inline-block; 
+  display: inline-flex;
 }
 
 .popup .popup-text {
@@ -11,7 +11,7 @@
   text-align: center;
   
   border-radius: 12px; /* Arrondir les bords */
-  padding: 8px 0; /* Ajouter du padding */
+  padding: 10px 8px; /* Ajouter du padding */
   position: absolute;
   z-index: 1;
   top: 150%; 
