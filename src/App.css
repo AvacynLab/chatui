@@ -6,6 +6,7 @@
   color-scheme: light dark;
   color: var(--text-color);
   background-color: var(--background-color);
+  overflow: hidden;
 }
 
 .app-wrapper.light {

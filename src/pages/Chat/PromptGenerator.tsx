@@ -154,19 +154,23 @@ function PromptGenerator() {
           </div>
           <div className="icons-and-button-container">
             <div className="icons-container">
-              <Popup text="Utiliser le micro">
-                <Icon
-                  className='icon microphone-icon'
-                  icon={isRecording ? 'line-md:loading-alt-loop' : 'fluent:slide-microphone-20-regular'}
-                  height={24}
-                  onClick={handleMicrophoneAction}
-                  style={{ cursor: 'pointer', color: isRecording ? '#DC4A41' : '#8952E0' }}
-                />
-              </Popup>
-              <Popup text="Téléverser un fichier">
-                <Icon className='icon' icon='line-md:upload-outline-loop' height={24} />
-                <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
-              </Popup>
+              <div className='icon-box'>
+                <Popup text="Utiliser le micro">
+                  <Icon
+                    className='icon microphone-icon'
+                    icon={isRecording ? 'line-md:loading-alt-loop' : 'fluent:slide-microphone-20-regular'}
+                    height={24}
+                    onClick={handleMicrophoneAction}
+                    style={{ cursor: 'pointer', color: isRecording ? '#DC4A41' : '#8952E0' }}
+                  />
+                </Popup>
+              </div>
+              <div className='icon-box'>
+                <Popup text="Téléverser un fichier">
+                  <Icon className='icon' icon='line-md:upload-outline-loop' height={24} />
+                  <input type="file" id="fileInput" className="file-input" onChange={handleFileUpload} />
+                </Popup>
+              </div>
             </div>
             <ButtonSend disabled={(!prompt && !audioBlob) || loading} onClick={handleSendPrompt} style={{ margin: '200' }}>
               <Icon icon="mdi:send" width={24} />
