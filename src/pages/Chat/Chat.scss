@@ -98,15 +98,17 @@
   gap: 10px;
   justify-content: center;
   padding: 18px;
-  
-  border-bottom: 2px solid #33373D;
+  border-bottom: 1px solid #33373D;
+  border-top: 1px solid #33373D;
   border-radius: 12px;
-  transition: 0.2s;
 
   &:hover {
+    border-left: 1px solid ;
     border-color: #8952E0;
+    margin-right: -2px;
     border-radius: 24px;
-    transition: 0.2s;
+    transition: margin 0.3s;
+    background-color: var(--input-focus-background);
     
 }
 }
