@@ -15,9 +15,9 @@
   --input-border: 1px solid rgba(191, 191, 191, 0.5);
   --input-focus-background: rgba(229, 229, 229, 0.1);
   --input-focus-border: #8952E0;
-  --light-border: 1px solid #1D2025;
+  --light-border: 1px solid #8952E0;
   --setup-background: #F1F1F2;
-  --setup-border: 1px solid #1D2025;
+  --setup-border: 1px solid #8952E0;
   --gemini-font-color: linear-gradient(315deg, #3B1676, #8952E0);
 }
 

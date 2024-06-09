@@ -8,11 +8,11 @@
     padding-right: 24px;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 01px solid #33373D;
+    border-bottom: var(--input-border);
     border-radius: 12px;
     transition: 0.2s;
     gap: 10px;
-    position: relative;
+    
 
     &:hover {
         background-color: var(--input-focus-background);

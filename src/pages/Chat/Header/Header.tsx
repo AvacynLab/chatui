@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
 import './Header.scss';
-import ButtonLogOut from '../../../components/ButtonLogOut/ButtonLogOut';
-
-import { clearChat, clearUser } from '../../../store/user/userSlice';
+import { clearChat } from '../../../store/user/userSlice';
 import ThemeToggle from '../../../components/ThemeToggle';
 import Modal from 'react-modal';
 import Slider from '../../../components/Slider/Slider';
@@ -12,7 +10,11 @@ import Popup from '../../../components/Popup/Popup';
 
 Modal.setAppElement('#root');
 
-function Header() {
+interface HeaderProps {
+    toggleBurger: () => void;
+}
+
+function Header({ toggleBurger }: HeaderProps) {
     const dispatch = useDispatch();
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -24,17 +26,13 @@ function Header() {
         setModalIsOpen(false);
     };
 
-    const handleLogout = () => {
-        dispatch(clearUser())
-    }
 
     return (
         <div className='header'>
-            <div className='header-box'>
+            <div className='header-box' onClick={toggleBurger}>
                 <Icon className='burger-icon' icon='solar:hamburger-menu-broken' height={24} />
             </div>
-            <div className='separator'>
-            </div>
+            <div className='separator'></div>
             <div className='header-box' onClick={openInfo}>
                 <Popup text="Tuto & informations">
                     <Icon className='clear-icon' icon='fluent:person-info-24-regular' height={24} />
@@ -46,14 +44,18 @@ function Header() {
                 </Popup>
             </div>
             <div className='header-box'>
+                <Popup text="Sauvegarder le chat <BIENTÔT>">
+                    <Icon className='clear-icon' icon='fluent:person-add-24-regular' height={24} />
+                </Popup>
+            </div>
+            <div className='header-box'>
                 <Popup text="Changer le thème">
                     <ThemeToggle />
                 </Popup>
             </div>
-            <ButtonLogOut onClick={handleLogout}>
+            {/* <ButtonLogOut onClick={handleLogout}>
                 <Icon icon="line-md:log-out" width={24} />
-            </ButtonLogOut>
-
+            </ButtonLogOut> */}
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

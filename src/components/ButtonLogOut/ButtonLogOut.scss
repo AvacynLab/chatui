@@ -1,16 +1,16 @@
 .buttonlogout {
     background-color: #33373D;
     color: var(--white);
-    padding: 12px ;
+    padding: 12px 2px;
     border-radius: 12px;
     font-size: 14px;
-    width: fit-content;
     border: 1px solid transparent;
     cursor: pointer;
     transition: 0.2s;
-    white-space: nowrap;
-    margin-left: 24px;
-  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
   
       &:hover {
         filter: brightness(90%);
