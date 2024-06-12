@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { textResponse } from '../../types/responses';
+import { autoSaveChat } from './userSlice';
 
 export const generateTextContent = createAsyncThunk(
   'user/generateTextContent',
@@ -91,6 +92,8 @@ export const generateTextContent = createAsyncThunk(
     if (aiAnswerText === undefined) {
       throw Error("Problème de requête");
     }
+
+    thunkApi.dispatch(autoSaveChat());
 
     return aiAnswerText;
   }

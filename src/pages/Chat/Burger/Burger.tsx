@@ -5,11 +5,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearUser } from '../../../store/user/userSlice';
 import ButtonLogOut from '../../../components/ButtonLogOut/ButtonLogOut';
+import History from '../../../components/History';
+import { clearChat } from '../../../store/user/userSlice';
 
 interface BurgerProps {
     isOpen: boolean;
     toggleBurger: () => void;
-    // Added prop for user name
 }
 
 function Burger({ isOpen }: BurgerProps) {
@@ -20,15 +21,15 @@ function Burger({ isOpen }: BurgerProps) {
         dispatch(clearUser());
     };
 
+    const handleNewChat = () => {
+        dispatch(clearChat());
+    };
+
     return (
         <div className={`burger-menu ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
             <ul>
-                <li className="  avacyn">
-                    <Icon icon="mdi:home" height={20} className="home-icon" />
-                </li>
-                <li className="menu-item-container">
-                    <Icon icon="fluent:book-contacts-24-regular" height={20} />
-                    <span className="menu-item-text">CRM</span>
+                <li className="avacyn" onClick={handleNewChat}>
+                    <Icon icon="lucide:square-plus" height={20} className="home-icon" />
                 </li>
                 <li className="menu-item-container">
                     <Icon icon="mdi:search" height={20} />
@@ -39,9 +40,8 @@ function Burger({ isOpen }: BurgerProps) {
                     <span className="menu-item-text">AGENTS</span>
                 </li>
             </ul>
-            <div className="history-container">
-                <span className="history-text">Historique</span>
-            </div>
+            
+            <History />
 
             <div className="logout-container">
                 <div className="user-container">

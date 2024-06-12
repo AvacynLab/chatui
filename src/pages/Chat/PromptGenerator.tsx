@@ -9,10 +9,13 @@ import Modal from 'react-modal';
 import Popup from '../../components/Popup/Popup';
 import SuggestionChat from '../../components/SuggestionChat';
 import CustomAudioPlayer from '../../components/CustomAudioPlayer';
+import { useDispatch } from 'react-redux';
+import { autoSaveChat } from '../../store/user/userSlice';
 
 Modal.setAppElement('#root');
 
 function PromptGenerator() {
+  const dispatch = useDispatch();
   const {
     handlePromptChange,
     handleSendPrompt,
@@ -34,7 +37,6 @@ function PromptGenerator() {
     isRecording,
     audioBlob,
     handleAudioDelete,
-    // handleAudioPlay,
     handleSuggestionClick
   } = usePromptGenerator();
 
@@ -44,7 +46,8 @@ function PromptGenerator() {
     if (messagesContainerRef.current) {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
-  }, [data]);
+    dispatch(autoSaveChat()); // Auto-save the chat every time data changes
+  }, [data, dispatch]);
 
   const suggestions = [
     "Recherche-moi l'actualité d'aujourd'hui.",

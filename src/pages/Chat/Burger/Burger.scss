@@ -19,6 +19,7 @@
         border-color: #8952E0;
         border-radius: 24px;
         transition: 0.2s;
+        
     }
 
     ul, .user-icon {
@@ -51,7 +52,7 @@
             margin: 0px;
             border: var(--input-border);
             border-radius: 6px;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             
             padding: 24px 3px;
             
@@ -119,7 +120,7 @@
             justify-content: flex-start;
             padding: 24px 14px;
             transition: 0.2s;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             
             border-radius: 12px;
 
@@ -195,20 +196,71 @@
         }
 
         .history-container {
-            display: flex;
+            display: block;
             justify-content: center;
             height: 55%;
             width: 100%;
-            padding: 12px;
+
             margin-bottom: 10px;
             transition: 0.2s;
+            
             border-radius: 12px;
 
             .history-text {
                 font-size: 12px;
-                color: #8952E0;
+                color: rgba(191, 191, 191, 0.5);
                 transition: 0.2s;
             }
+            
+            .history-list-item {
+                position: relative;
+                padding: 3px 14px;
+                color: rgba(191, 191, 191, 0.5);
+                cursor: pointer;
+                border: none;
+                border-radius: 0px;
+                border-top: 1px solid #33373D;
+                white-space: nowrap; /* Force the text to stay on a single line */
+                display: flex;
+                justify-content: space-between; /* Ensure the delete button is always on the right */
+                
+                &:hover {
+                  color: #8952E0;
+                  
+                  .delete-btn {
+                    display: inline-block;
+                  }
+                }
+              }
+
+            .history-list-item p {
+                padding-top: 4px;
+                font-size: 12px;
+            }
+
+            .history-text-item {
+                overflow: hidden; /* Hide overflow text */
+                text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+                flex: 1; /* Allow the text to take available space */
+              }
+
+            .delete-btn {
+                display: none; /* Hide the button by default */
+                background-color: #DC4A41;
+                border: none;
+                color: white;
+                padding: 6px 6px;
+                border-radius: 6px;
+                cursor: pointer;
+                position: absolute;
+                right: -10px; /* Always position the button to the right */
+                top: 50%;
+                transform: translateY(-40%); /* Center the button vertically */
+              }
+
+              
+
+            
         }
 
         .footer-text {
