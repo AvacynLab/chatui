@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
 import './Header.scss';
-import { deleteChat, autoSaveChat } from '../../../store/user/userSlice'; // Import autoSaveChat
+import { autoSaveChat } from '../../../store/user/userSlice'; // Import autoSaveChat
 import ThemeToggle from '../../../components/ThemeToggle';
 import Modal from 'react-modal';
 import Popup from '../../../components/Popup/Popup';
@@ -17,10 +17,6 @@ interface HeaderProps {
 function Header({ toggleBurger }: HeaderProps) {
     const dispatch = useDispatch();
 
-
-    const handleDeleteChat = () => {
-        dispatch(deleteChat());
-    };
 
     useEffect(() => {
         const interval = setInterval(() => {
