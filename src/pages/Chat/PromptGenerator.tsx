@@ -81,7 +81,7 @@ function PromptGenerator() {
                 ) : (
                   <p>{message.message}</p>
                 )}
-                {message.type === 'outbound' && message.images && (
+                {message.type === 'outbound' && message.images && message.images.length > 0 && (
                   <div className="images-preview-container">
                     {message.images.map((image, imgIndex) => (
                       <div

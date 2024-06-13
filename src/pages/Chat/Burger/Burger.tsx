@@ -15,6 +15,7 @@ interface BurgerProps {
 
 function Burger({ isOpen }: BurgerProps) {
     const [isCollapsed] = useState(true);
+    const [isHovered, setIsHovered] = useState(false);
     const dispatch = useDispatch();
 
     const handleLogout = () => {
@@ -25,8 +26,20 @@ function Burger({ isOpen }: BurgerProps) {
         dispatch(clearChat());
     };
 
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
     return (
-        <div className={`burger-menu ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
+        <div 
+            className={`burger-menu ${isOpen || isHovered ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             <ul>
                 <li className="avacyn" onClick={handleNewChat}>
                     <Icon icon="lucide:square-plus" height={20} className="home-icon" />

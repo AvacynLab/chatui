@@ -9,15 +9,12 @@
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: var(--input-border);
-    border-radius: 12px;
-    transition: 0.2s;
+    transition: 0.2s ease-in;
     gap: 10px;
     
 
     &:hover {
-        background-color: var(--input-focus-background);
         border-color: #8952E0;
-        border-radius: 24px;
         transition: 0.2s;
     }
 }

@@ -8,13 +8,14 @@
 }
 
 .content {
-  transition: margin-left 0.2s ease-in;
+  transition: margin-left 0.1s ease-in;
   margin-left: 50px;
 /* Marge pour le menu réduit */
 }
 
-.burger-open .content {
+.burger-menu.open ~ .content {
   margin-left: 200px;
+  transition: 0.2s;
    /* Marge pour le menu ouvert */
 }
 
@@ -100,15 +101,14 @@
   padding: 18px;
   border-bottom: 1px solid #33373D;
   border-top: 1px solid #33373D;
-  border-radius: 12px;
+  border-bottom-left-radius: 12px;
 
   &:hover {
-    border-left: 1px solid ;
+    
     border-color: #8952E0;
-    margin-right: -2px;
-    border-radius: 24px;
+
     transition: margin 0.3s;
-    background-color: var(--input-focus-background);
+
     
 }
 }

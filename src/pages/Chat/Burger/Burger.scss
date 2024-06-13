@@ -9,15 +9,15 @@
     padding: 12px;
     border-right: var(--input-border);
     border-bottom: var(--input-border);
-    border-radius: 12px;
+    border-bottom-right-radius: 12px;
     z-index: 1000;
     gap: 10px;
+    
 
 
     &:hover {
-        background-color: var(--input-focus-background);
+        
         border-color: #8952E0;
-        border-radius: 24px;
         transition: 0.2s;
         
     }
@@ -43,7 +43,7 @@
 
     &.collapsed {
         padding: 10px;
-        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: 0.1s ease-in;
         ul li {
             height: 20%;
             display: flex;
@@ -110,7 +110,7 @@
     &.open {
         transform: translateX(0);
         width: 200px;
-        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: width 0.1s ease-in, text 0.1s;
         
 
         ul li {
@@ -200,16 +200,14 @@
             justify-content: center;
             height: 55%;
             width: 100%;
-
             margin-bottom: 10px;
-            transition: 0.2s;
-            
             border-radius: 12px;
+            transition: 1s ease-in;
 
             .history-text {
                 font-size: 12px;
                 color: rgba(191, 191, 191, 0.5);
-                transition: 0.2s;
+                transition: 1s ease-in;
             }
             
             .history-list-item {
