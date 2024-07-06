@@ -3,10 +3,10 @@ import './Burger.scss';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { clearUser } from '../../../store/user/userSlice';
-import ButtonLogOut from '../../../components/ButtonLogOut/ButtonLogOut';
-import History from '../../../components/History';
-import { clearChat } from '../../../store/user/userSlice';
+import { clearUser, clearChat } from '../../store/user/userSlice';
+import ButtonLogOut from '../ButtonLogOut/ButtonLogOut';
+import History from '../History/History';
+import { NavLink } from 'react-router-dom';
 
 interface BurgerProps {
     isOpen: boolean;
@@ -22,9 +22,6 @@ function Burger({ isOpen }: BurgerProps) {
         dispatch(clearUser());
     };
 
-    const handleNewChat = () => {
-        dispatch(clearChat());
-    };
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -41,17 +38,23 @@ function Burger({ isOpen }: BurgerProps) {
             onMouseLeave={handleMouseLeave}
         >
             <ul>
-                <li className="avacyn" onClick={handleNewChat}>
-                    <Icon icon="lucide:square-plus" height={20} className="home-icon" />
+                <NavLink to="/dashboard" className="navlink-disabled">
+                <li className="avacyn">
+                    <Icon icon="bxs:dashboard" height={20} className="home-icon" />
                 </li>
+                </NavLink>
+                <NavLink to="/chat" className="navlink-disabled">
                 <li className="menu-item-container">
-                    <Icon icon="mdi:search" height={20} />
-                    <span className="menu-item-text">RECHERCHES</span>
+                    <Icon icon="line-md:chat" height={20} />
+                    <span className="menu-item-text">Chat</span>
                 </li>
+                </NavLink>
+                <NavLink to="/search" className="navlink-disabled">
                 <li className="menu-item-container">
-                    <Icon icon="fluent-mdl2:contact-list" height={20} />
-                    <span className="menu-item-text">AGENTS</span>
+                    <Icon icon="mingcute:search-3-line" height={20} />
+                    <span className="menu-item-text">DeepSearch</span>
                 </li>
+                </NavLink>
             </ul>
             
             <History />

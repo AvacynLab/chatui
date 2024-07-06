@@ -1,0 +1,22 @@
+/* CSS */
+.chat-page-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+  
+  }
+  
+  .content {
+    transition: margin-left 0.1s ease-in;
+    margin-left: 50px;
+  /* Marge pour le menu réduit */
+  }
+  
+  .burger-menu.open ~ .content {
+    margin-left: 200px;
+    transition: 0.2s;
+     /* Marge pour le menu ouvert */
+  }
+  
+  

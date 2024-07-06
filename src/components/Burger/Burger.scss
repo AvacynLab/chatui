@@ -300,3 +300,9 @@
 .menu-item-container.avacyn .home-icon {
     margin: 0;
 }
+
+.burger-menu .navlink-disabled {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit; /* Ensure the color stays the same */
+}

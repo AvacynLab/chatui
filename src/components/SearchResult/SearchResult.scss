@@ -1,0 +1,47 @@
+/* File: SearchResult.scss */
+
+.search-result {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: var(--input-focus-background);
+    border: 1px solid var(--input-focus-border);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  
+  .search-result h3 {
+    color: #8952E0;
+    margin-bottom: 10px;
+  }
+  
+  .search-result h4 {
+    color: #7D7F83;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .search-result h5 {
+    color: #7D7F83;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .search-result .datablock {
+    margin-bottom: 15px;
+  }
+  
+  .search-result .sources,
+  .search-result .questions {
+    margin-top: 15px;
+  }
+  
+  .search-result ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .search-result li {
+    margin-bottom: 5px;
+  }

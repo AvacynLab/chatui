@@ -1,10 +1,8 @@
-import Header from './Header';
-import PromptGenerator from './PromptGenerator';
 import Burger from '../../components/Burger';
-import './Chat.scss';
+import './Search.scss';
 import { useState } from 'react';
 
-function Chat() {
+function Search() {
     const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
     const toggleBurger = () => {
@@ -15,11 +13,11 @@ function Chat() {
         <div className={`main-page-container ${isBurgerOpen ? 'burger-open' : ''}`}>
             <Burger isOpen={isBurgerOpen} toggleBurger={toggleBurger} />
             <div className="content">
-                <Header toggleBurger={toggleBurger} />
-                <PromptGenerator />
+
+
             </div>
         </div>
     );
 }
 
-export default Chat;
+export default Search;

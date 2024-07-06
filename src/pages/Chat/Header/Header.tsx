@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
 import './Header.scss';
-import { autoSaveChat } from '../../../store/user/userSlice'; // Import autoSaveChat
+import { autoSaveChat, clearChat } from '../../../store/user/userSlice'; // Import autoSaveChat
 import ThemeToggle from '../../../components/ThemeToggle';
 import Modal from 'react-modal';
 import Popup from '../../../components/Popup/Popup';
@@ -16,6 +16,10 @@ interface HeaderProps {
 
 function Header({ toggleBurger }: HeaderProps) {
     const dispatch = useDispatch();
+
+    const handleNewChat = () => {
+        dispatch(clearChat());
+    };
 
 
     useEffect(() => {
@@ -33,11 +37,11 @@ function Header({ toggleBurger }: HeaderProps) {
             </div>
             <div className='separator'></div>
 
-            {/* <div className='header-box' onClick={handleDeleteChat}>
-                <Popup text="Supprimer le chat">
-                    <Icon className='clear-icon' icon='fluent:person-delete-24-regular' height={24} />
+            <div className='header-box' onClick={handleNewChat}>
+                <Popup text="Nouveau chat">
+                    <Icon className='clear-icon' icon='lucide:square-plus' height={24} />
                 </Popup>
-            </div> */}
+            </div>
             <div className='header-box'>
                 <Popup text="Changer le thème">
                     <ThemeToggle />

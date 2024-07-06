@@ -1,4 +1,3 @@
-// promptgenerator.tsx
 import ReactMarkdown from 'react-markdown';
 import { usePromptGenerator } from './hooks';
 import { useRef, useEffect } from 'react';
@@ -11,6 +10,7 @@ import SuggestionChat from '../../components/SuggestionChat';
 import CustomAudioPlayer from '../../components/CustomAudioPlayer';
 import { useDispatch } from 'react-redux';
 import { autoSaveChat } from '../../store/user/userSlice';
+import SearchResult from '../../components/SearchResult';
 
 Modal.setAppElement('#root');
 
@@ -80,6 +80,9 @@ function PromptGenerator() {
                   <ReactMarkdown className="markdown-render">{message.message}</ReactMarkdown>
                 ) : (
                   <p>{message.message}</p>
+                )}
+                {message.type === 'inbound' && message.search && (
+                  <SearchResult search={message.search} />
                 )}
                 {message.type === 'outbound' && message.images && message.images.length > 0 && (
                   <div className="images-preview-container">

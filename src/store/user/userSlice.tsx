@@ -1,7 +1,6 @@
-// userSlice.tsx
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { generateTextContent } from './dispatchers.user';
-import { UserState } from '../../types/responses';
+import { UserState, Search, Message } from '../../types/responses';
 
 const initialUserState: UserState = {
   name: '',
@@ -11,6 +10,7 @@ const initialUserState: UserState = {
     error: undefined,
     data: [],
   },
+  searches: [],
   proxy: undefined,
   theme: 'dark',
   sessionid: '',
@@ -86,6 +86,12 @@ const userSlice = createSlice({
         });
       }
     },
+    addSearch: (state, action: PayloadAction<Search>) => {
+      if (!state.searches) {
+        state.searches = [];
+      }
+      state.searches.push(action.payload);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -105,12 +111,18 @@ const userSlice = createSlice({
         state.conversation.loading = false;
 
         const inboundTimestamp = new Date().toISOString();
-        state.conversation.data.push({
+        const inboundMessage: Message = {
           type: 'inbound',
-          message: action.payload,
+          message: action.payload.text,
           images: action.meta.arg.images,
           timestamp: inboundTimestamp,
-        });
+        };
+
+        if (action.payload.search) {
+          inboundMessage.search = action.payload.search;
+        }
+
+        state.conversation.data.push(inboundMessage);
       })
       .addCase(generateTextContent.rejected, (state, action) => {
         state.conversation.loading = false;
@@ -119,5 +131,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, clearUser, clearChat, setTheme, setImages, saveChat, loadChat, deleteChat, autoSaveChat } = userSlice.actions;
+export const { setUser, clearUser, clearChat, setTheme, setImages, saveChat, loadChat, deleteChat, autoSaveChat, addSearch } = userSlice.actions;
 export default userSlice.reducer;
