@@ -16,6 +16,7 @@ function App() {
       {API_KEY ? (
         <>
           <Routes>
+            <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/search" element={<Search />} />
