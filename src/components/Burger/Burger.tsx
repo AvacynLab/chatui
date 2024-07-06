@@ -3,7 +3,7 @@ import './Burger.scss';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { clearUser, clearChat } from '../../store/user/userSlice';
+import { clearUser } from '../../store/user/userSlice';
 import ButtonLogOut from '../ButtonLogOut/ButtonLogOut';
 import History from '../History/History';
 import { NavLink } from 'react-router-dom';
